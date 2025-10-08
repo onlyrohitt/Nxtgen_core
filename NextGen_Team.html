@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NextGen AI Team - Multi-Colored Core</title>
+  <style>
+    /* ------------------- DIGITAL GOLD / ADVANCED YELLOW THEME ------------------- */
+    @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap');
+
+    :root{
+      /* Base Colors */
+      --bg-dark: #000000;
+      --bg-light: #212121;
+      --neon-yellow: #FFD700; /* Digital Gold */
+      --neon-orange: #FF8C00;
+      --text-main: #E0E0FF;
+      --text-muted: #8899AA;
+      --border-light: rgba(255,255,255,0.08);
+      
+      /* New Team-Specific Colors for text/glow */
+      --color-technical: #00FFFF; /* Aqua */
+      --color-social: #FF69B4; /* Hot Pink */
+      --color-event: #00FF00; /* Neon Green */
+      --color-pr: #FF3232; /* Bright Red */
+      --color-finance: #9D00FF; /* Bright Purple */
+      --color-leadership: #FF8C00; /* Neon Orange */
+
+      font-family: 'Oxanium', monospace, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    
+    body{
+      min-height:100vh;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x:hidden;
+      padding:60px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Subtle background pattern */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.3;
+        z-index: -1;
+    }
+    
+    .wrap{max-width:1300px;margin:0 auto}
+
+    /* Header and Title */
+    header{
+      text-align:center;margin-bottom:60px;animation:fadeIn 1.8s ease;
+    }
+    h1{
+      font-size: 56px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, var(--neon-yellow), var(--neon-orange), var(--neon-yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); 
+    }
+    p.lead{color:var(--text-muted);margin-top:10px;font-size:20px;max-width: 800px; margin-left: auto; margin-right: auto;}
+
+    /* Grid Layout */
+    .grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+        gap:40px;
+        padding: 20px 0;
+    }
+
+    /* Card Styling */
+    .card{
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding:25px;
+      border:1px solid var(--border-light);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.15); 
+      backdrop-filter: blur(10px);
+      transition:transform .4s ease-out, box-shadow .4s ease-out, border-color .4s ease-out;
+      cursor:pointer;position:relative;overflow:hidden;
+      z-index: 1;
+      animation:slideInFromBottom 1s ease forwards;
+      opacity: 0;
+    }
+    /* Staggered animation delays */
+    .card:nth-child(2n) { animation-delay: 0.1s; }
+    .card:nth-child(3n) { animation-delay: 0.2s; }
+    .card:nth-child(4n) { animation-delay: 0.3s; }
+    .card:nth-child(5n) { animation-delay: 0.4s; }
+    .card:nth-child(6n) { animation-delay: 0.5s; }
+
+
+    .card:hover{
+      transform:translateY(-15px) scale(1.03);
+      box-shadow:0 0 35px var(--neon-yellow), 0 0 60px rgba(255, 140, 0, 0.4); 
+      border-color: var(--neon-yellow);
+    }
+    .card::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(45deg, var(--neon-yellow), var(--neon-orange));
+      opacity:0;transition:opacity .4s;z-index:0;
+      border-radius: inherit;
+    }
+    .card:hover::before{opacity:0.15}
+
+    /* Photo Styling */
+    .photo{width:120px;height:120px;border-radius:50%;overflow:hidden;position:relative;z-index:1;margin:0 auto 20px;
+        border: 3px solid var(--neon-yellow); 
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); 
+        transition: border-color .4s, box-shadow .4s;
+    }
+    .card:hover .photo {
+        border-color: var(--neon-orange);
+        box-shadow: 0 0 25px var(--neon-orange);
+    }
+    .photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .card:hover .photo img{transform:scale(1.15)}
+
+    /* Text Styling */
+    .name{font-weight:700;font-size:24px;position:relative;z-index:1;letter-spacing: 0.5px;}
+    .role{color:var(--neon-yellow);
+        font-size:16px;margin:8px 0 15px;z-index:1;position:relative;font-weight: 600;}
+    .bio{font-size:15px;color:var(--text-muted);line-height:1.5;z-index:1;position:relative;margin-bottom:20px; max-width: 90%; margin-left: auto; margin-right: auto;}
+
+    /* ------------------- TEAM LEAD SPECIFIC STYLES ------------------- */
+    
+    /* Leadership (President/VP) */
+    .card.leader .name { color: var(--color-leadership); }
+    .card.leader .role { color: var(--color-leadership); }
+    .card.leader .photo { border-color: var(--color-leadership); box-shadow: 0 0 15px var(--color-leadership); }
+    .card.leader:hover { border-color: var(--color-leadership); box-shadow: 0 0 35px var(--color-leadership), 0 0 60px rgba(255, 140, 0, 0.4); }
+
+    /* Technical Team Head */
+    .card.tech-head .name { color: var(--color-technical); }
+    .card.tech-head .role { color: var(--color-technical); }
+    .card.tech-head .photo { border-color: var(--color-technical); box-shadow: 0 0 15px var(--color-technical); }
+    .card.tech-head:hover { border-color: var(--color-technical); box-shadow: 0 0 35px var(--color-technical), 0 0 60px rgba(0, 255, 255, 0.4); }
+
+    /* Social Media Team Head */
+    .card.social-head .name { color: var(--color-social); }
+    .card.social-head .role { color: var(--color-social); }
+    .card.social-head .photo { border-color: var(--color-social); box-shadow: 0 0 15px var(--color-social); }
+    .card.social-head:hover { border-color: var(--color-social); box-shadow: 0 0 35px var(--color-social), 0 0 60px rgba(255, 105, 180, 0.4); }
+    
+    /* Event Management Team Head */
+    .card.event-head .name { color: var(--color-event); }
+    .card.event-head .role { color: var(--color-event); }
+    .card.event-head .photo { border-color: var(--color-event); box-shadow: 0 0 15px var(--color-event); }
+    .card.event-head:hover { border-color: var(--color-event); box-shadow: 0 0 35px var(--color-event), 0 0 60px rgba(0, 255, 0, 0.4); }
+
+    /* PR Team Head */
+    .card.pr-head .name { color: var(--color-pr); }
+    .card.pr-head .role { color: var(--color-pr); }
+    .card.pr-head .photo { border-color: var(--color-pr); box-shadow: 0 0 15px var(--color-pr); }
+    .card.pr-head:hover { border-color: var(--color-pr); box-shadow: 0 0 35px var(--color-pr), 0 0 60px rgba(255, 50, 50, 0.4); }
+    
+    /* Finance Team Head */
+    .card.finance-head .name { color: var(--color-finance); }
+    .card.finance-head .role { color: var(--color-finance); }
+    .card.finance-head .photo { border-color: var(--color-finance); box-shadow: 0 0 15px var(--color-finance); }
+    .card.finance-head:hover { border-color: var(--color-finance); box-shadow: 0 0 35px var(--color-finance), 0 0 60px rgba(157, 0, 255, 0.4); }
+    
+    /* ------------------- TAG STYLES (Kept for consistency) ------------------- */
+
+    .tags{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;z-index:1;position:relative;justify-content: center;}
+    .tag{font-size:13px;padding:8px 14px;border-radius:999px;font-weight:600;
+        box-shadow: 0 0 8px rgba(0,0,0,0.5); 
+        text-transform: uppercase;
+    }
+    
+    .tag.leadership { background: rgba(255, 140, 0, 0.2); border: 1px solid rgba(255, 140, 0, 0.6); color: var(--neon-orange); } 
+    .tag.technical { background: rgba(0, 255, 255, 0.2); border: 1px solid rgba(0, 255, 255, 0.6); color: var(--color-technical); }
+    .tag.social { background: rgba(255, 105, 180, 0.2); border: 1px solid rgba(255, 105, 180, 0.6); color: var(--color-social); }
+    .tag.event { background: rgba(0, 255, 0, 0.2); border: 1px solid rgba(0, 255, 0, 0.6); color: var(--color-event); }
+    .tag.pr { background: rgba(255, 50, 50, 0.2); border: 1px solid rgba(255, 50, 50, 0.6); color: var(--color-pr); } 
+    .tag.finance { background: rgba(157, 0, 255, 0.2); border: 1px solid rgba(157, 0, 255, 0.6); color: var(--color-finance); }
+
+
+    /* Footer and Animations */
+    footer{margin-top:80px;text-align:center;color:var(--text-muted);font-size:15px;
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.2);
+    }
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:none}}
+    @keyframes slideInFromBottom{
+        from{opacity:0;transform:translateY(50px);}
+        to{opacity:1;transform:none;}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>NextGen AI</h1>
+      <p class="lead">The human interface powering our autonomous systems and digital frontiers. Each mind a node in our collective intelligence.</p>
+    </header>
+
+    <main>
+      <section class="grid">
+
+        
+        <article class="card leader">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\IMG_0820.jpg" alt="Sufia Sayyed"></div>
+          <h3 class="name">Sufia Sayyed</h3>
+          <div class="role">President</div>
+          <p class="bio">Strategic command unit. Integrates neural network goals with organizational directives.</p>
+          <div class="tags">
+            <span class="tag leadership">Leadership</span>
+          </div>
+        </article>
+
+        <article class="card leader">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\IMG_0811.jpg" alt="Swapnil Birajdar"></div>
+          <h3 class="name">Swapnil Birajdar</h3>
+          <div class="role">Vice President</div>
+          <p class="bio">System operations overseer. Ensures resource allocation and protocol efficiency.</p>
+          <div class="tags">
+            <span class="tag leadership">Leadership</span>
+            <span class="tag">Operations</span>
+          </div>
+        </article>
+        
+        <article class="card tech-head">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\arham_boonlia.png" alt="Arham Boonlia"></div>
+          <h3 class="name">Arham Boonlia</h3>
+          <div class="role">Technical Team - Head</div>
+          <p class="bio">Lead code architect. Oversees core algorithm development and system integrity.</p>
+          <div class="tags">
+            <span class="tag technical">Technical Head</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\rohit_sharma.png" alt="Rohit Sharma"></div>
+          <h3 class="name">Rohit Sharma</h3>
+          <div class="role">Technical Team - Member</div>
+          <p class="bio">Front-end interface specialist. Designs intuitive user experience protocols.</p>
+          <div class="tags">
+            <span class="tag technical">Technical</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\priyal_khunia.png" alt="Priyal Khunia"></div>
+          <h3 class="name">Priyal Khunia</h3>
+          <div class="role">Technical Team - Member</div>
+          <p class="bio">Data flow engineer. Optimizes information pathways and processing efficiency.</p>
+          <div class="tags">
+            <span class="tag technical">Technical</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\kriya_khuniya.png" alt="Kriya Khuniya"></div>
+          <h3 class="name">Kriya Khuniya</h3>
+          <div class="role">Technical Team - Member</div>
+          <p class="bio">Debug and QA unit. Ensures fault tolerance and system stability.</p>
+          <div class="tags">
+            <span class="tag technical">Technical</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\rahyaan.jpg" alt="Rahyaan Ahmed"></div>
+          <h3 class="name">Rayhaan Ahmed</h3>
+          <div class="role">Technical Team - Member</div>
+          <p class="bio">System deployment specialist. Manages integration and live server protocols.</p>
+          <div class="tags">
+            <span class="tag technical">Technical</span>
+          </div>
+        </article>
+        
+        <article class="card social-head">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\shubh_mali.png" alt="Shubh Mali"></div>
+          <h3 class="name">Shubh Mali</h3>
+          <div class="role">Social Media Team - Head</div>
+          <p class="bio">Digital communication lead. Crafts public data streams and network interactions.</p>
+          <div class="tags">
+            <span class="tag social">Social Head</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\aaroh_dharmadhikari.jpg" alt="Aaroh Dharmadhikari"></div>
+          <h3 class="name">Aaroh Dharmadhikari</h3>
+          <div class="role">Social Media Team - Member</div>
+          <p class="bio">Community engagement module. Monitors sentiment and manages digital discourse.</p>
+          <div class="tags">
+            <span class="tag social">Social Media</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\manali_maniyar.jpg" alt="Manali Maniyar"></div>
+          <h3 class="name">Manali Maniyar</h3>
+          <div class="role">Social Media Team - Member</div>
+          <p class="bio">Visual content renderer. Generates holographic and graphic assets for outreach.</p>
+          <div class="tags">
+            <span class="tag social">Social Media</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\ayan_kundlik.jpg" alt="Ayan Kundlik"></div>
+          <h3 class="name">Ayan Kundlik</h3>
+          <div class="role">Social Media Team - Member</div>
+          <p class="bio">Broadcast scheduler. Optimizes content release for maximum network penetration.</p>
+          <div class="tags">
+            <span class="tag social">Social Media</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\samruddi_lonkar.png" alt="Samruddi Lonkar"></div>
+          <h3 class="name">Samruddi Lonkar</h3>
+          <div class="role">Social Media Team - Member</div>
+          <p class="bio">Digital media archivist. Curates and organizes multimedia data streams.</p>
+          <div class="tags">
+            <span class="tag social">Social Media</span>
+          </div>
+        </article>
+
+        <article class="card event-head">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\aditya_patil.png" alt="Aditya Patil"></div>
+          <h3 class="name">Aditya Patil</h3>
+          <div class="role">Event Management Team - Head</div>
+          <p class="bio">Experiential architect. Designs and deploys real-world interactive modules.</p>
+          <div class="tags">
+            <span class="tag event">Events Head</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\saiprasad_patil.png" alt="Saiprasad Patil"></div>
+          <h3 class="name">Saiprasad Patil</h3>
+          <div class="role">Event Management Team - Member</div>
+          <p class="bio">Logistics coordinator. Ensures optimal resource and venue allocation for events.</p>
+          <div class="tags">
+            <span class="tag event">Events</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\rajeshwari_nagare.png" alt="Rajeshwari Nagare"></div>
+          <h3 class="name">Rajeshwari Nagare</h3>
+          <div class="role">Event Management Team - Member</div>
+          <p class="bio">Participant interface manager. Handles registration and attendee data streams.</p>
+          <div class="tags">
+            <span class="tag event">Events</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\ahmed_sayyed.png" alt="Ahmed Sayyed"></div>
+          <h3 class="name">Ahmed Sayyed</h3>
+          <div class="role">Event Management Team - Member</div>
+          <p class="bio">On-site infrastructure technician. Manages physical setup and tech deployment.</p>
+          <div class="tags">
+            <span class="tag event">Events</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\shreyansh_pokharna.png" alt="Shreyansh Pokharna"></div>
+          <h3 class="name">Shreyansh Pokharna</h3>
+          <div class="role">Event Management Team - Member</div>
+          <p class="bio">Post-event data analyst. Collects and processes feedback for future iterations.</p>
+          <div class="tags">
+            <span class="tag event">Events</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\pranav_sharma.jpg" alt="Pranav Sharma"></div>
+          <h3 class="name">Pranav Sharma</h3>
+          <div class="role">Event Management Team - Member</div>
+          <p class="bio">Speaker engagement specialist. Coordinates external expert integration.</p>
+          <div class="tags">
+            <span class="tag event">Events</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\prarthana_dhage.jpg" alt="Prarthana Dhage"></div>
+          <h3 class="name">Prarthana Dhage</h3>
+          <div class="role">Event Management Team - Member</div>
+          <p class="bio">Promotional asset designer. Crafts visual campaigns for event visibility.</p>
+          <div class="tags">
+            <span class="tag event">Events</span>
+          </div>
+        </article>
+        
+        <article class="card pr-head">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\Justin_bardeskar.png" alt="Justin Bardeskar"></div>
+          <h3 class="name">Justin Bardeskar</h3>
+          <div class="role">PR Team - Head</div>
+          <p class="bio">External communications hub. Manages public narrative and media relations.</p>
+          <div class="tags">
+            <span class="tag pr">PR Head</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\sarthak_pardeshi.png" alt="Sarthak Pardeshi"></div>
+          <h3 class="name">sarthak Pardeshi</h3>
+          <div class="role">PR Team - Member</div>
+          <p class="bio">Information dissemination unit. Ensures consistent messaging across all channels.</p>
+          <div class="tags">
+            <span class="tag pr">PR</span>
+          </div>
+        </article>
+
+        <article class="card finance-head">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\Ashish_Purohit.png" alt="Ashish Purohit"></div>
+          <h3 class="name">Ashish Purohit</h3>
+          <div class="role">Finance Team - Head</div>
+          <p class="bio">Resource allocation matrix manager. Oversees budget integrity and fiscal projections.</p>
+          <div class="tags">
+            <span class="tag finance">Finance Head</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="photo"><img src="C:\Users\sharm\Downloads\vscode\bleh\Abhay_Wagh.png" alt="Abhay Wagh"></div>
+          <h3 class="name">Abhay Wagh</h3>
+          <div class="role">Finance Team - Member</div>
+          <p class="bio">Expenditure tracking module. Monitors and reports on financial data streams.</p>
+          <div class="tags">
+            <span class="tag finance">Finance</span>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <footer>&copy; 2025 NextGen AI Corp. Synthesizing the future.</footer>
+  </div>
+</body>
+</html>
